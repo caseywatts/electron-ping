@@ -1,5 +1,6 @@
 const {app, Menu, Tray} = require('electron')
 const notify = require('electron-main-notification')
+const ping = require('ping')
 
 let tray = null
 const onClickChangeIcon = function () {
@@ -9,8 +10,14 @@ const onClickTriggerNotification = function () {
   notify('hi')
 }
 
+const doThePing = function () {
+  ping.promise.probe('google.com').then(onRecievePing)
+}
+const onRecievePing = function (pingResponse) {
+  notify(pingResponse.time)
+}
 const startToPing = function () {
-  setInterval(() => { notify('hi') }, 1000)
+  setInterval(doThePing, 1000)
 }
 
 app.on('ready', () => {

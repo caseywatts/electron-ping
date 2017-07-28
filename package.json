@@ -5,7 +5,8 @@
   "main": "main.js",
   "dependencies": {
     "electron": "^1.6.11",
-    "electron-main-notification": "^1.0.1"
+    "electron-main-notification": "^1.0.1",
+    "ping": "^0.2.2"
   },
   "devDependencies": {
     "standard": "^10.0.2"
