@@ -84,5 +84,6 @@ const setUpTrayAndContextMenu = function () {
 
 app.on('ready', () => {
   setUpTrayAndContextMenu()
+  app.dock.hide()
   startToPing()
 })
