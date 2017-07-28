@@ -6,18 +6,23 @@ const ping = require('ping')
 let tray = null
 let lastSeenState = null
 
+//
+// config
+//
+
 const iconPaths = {
   icon1: path.join(__dirname, 'arrows.png'),
   icon2: path.join(__dirname, 'arrows2.png')
 }
+
+//
+// UI Interaction Code
+//
+
 const silentNotify = function (message) {
   notify(message, {
     silent: true
   })
-}
-
-const doThePing = function () {
-  ping.promise.probe('google.com').then(onRecievePing)
 }
 
 const maybeNotify = function (lastResponseIsAlive) {
@@ -39,6 +44,14 @@ const maybeChangeIcon = function (lastResponseIsAlive) {
   }
 }
 
+//
+// ping code
+//
+
+const doThePing = function () {
+  ping.promise.probe('google.com').then(onRecievePing)
+}
+
 const onRecievePing = function (pingResponse) {
   const lastResponseIsAlive = pingResponse.alive
   maybeNotify(lastResponseIsAlive)
@@ -49,7 +62,10 @@ const startToPing = function () {
   setInterval(doThePing, 1000)
 }
 
+//
 // tray and menu
+//
+
 const onClickChangeIcon = function () {
   tray.setImage(iconPaths.icon2)
 }
@@ -67,7 +83,10 @@ const setUpTrayAndContextMenu = function () {
   tray.setContextMenu(contextMenu)
 }
 
+//
 // app ready, "main"
+//
+
 app.on('ready', () => {
   setUpTrayAndContextMenu()
   startToPing()
