@@ -51,14 +51,14 @@ const maybeChangeIcon = function (lastResponseIsAlive) {
 // ping code
 //
 
-const doThePing = function () {
-  ping.promise.probe(domainToPing).then(onRecievePing)
-}
-
 const onRecievePing = function (pingResponse) {
   const lastResponseIsAlive = pingResponse.alive
   maybeNotify(lastResponseIsAlive)
   maybeChangeIcon(lastResponseIsAlive)
+}
+
+const doThePing = function () {
+  ping.promise.probe(domainToPing).then(onRecievePing)
 }
 
 const startToPing = function () {
