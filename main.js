@@ -1,5 +1,4 @@
 const {app, Menu, Tray} = require('electron')
-const path = require('path')
 const notify = require('electron-main-notification')
 const ping = require('ping')
 
