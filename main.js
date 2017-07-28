@@ -33,9 +33,18 @@ const maybeNotify = function (lastResponseIsAlive) {
   }
 }
 
+const maybeChangeIcon = function (lastResponseIsAlive) {
+  if (lastResponseIsAlive) {
+    tray.setImage('arrows.png')
+  } else {
+    tray.setImage('arrows2.png')
+  }
+}
+
 const onRecievePing = function (pingResponse) {
   const lastResponseIsAlive = pingResponse.alive
   maybeNotify(lastResponseIsAlive)
+  maybeChangeIcon(lastResponseIsAlive)
 }
 
 const startToPing = function () {
