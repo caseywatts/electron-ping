@@ -21,7 +21,7 @@ const silentNotify = function (message) {
 const doThePing = function () {
   ping.promise.probe('google.com').then(onRecievePing)
 }
-const onRecievePing = function (pingResponse) {
+const maybeNotify = function (pingResponse) {
   if (pingResponse.alive !== lastSeenState) {
     if (pingResponse.alive === true) {
       silentNotify('Wifi back on')
@@ -30,6 +30,9 @@ const onRecievePing = function (pingResponse) {
     }
     lastSeenState = pingResponse.alive
   }
+}
+const onRecievePing = function (pingResponse) {
+  maybeNotify(pingResponse)
 }
 const startToPing = function () {
   setInterval(doThePing, 1000)
