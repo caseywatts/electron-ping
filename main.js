@@ -16,6 +16,7 @@ const iconPaths = {
 }
 
 const intervalDuration = 1000
+const domainToPing = 'google.com'
 
 //
 // UI Interaction Code
@@ -51,7 +52,7 @@ const maybeChangeIcon = function (lastResponseIsAlive) {
 //
 
 const doThePing = function () {
-  ping.promise.probe('google.com').then(onRecievePing)
+  ping.promise.probe(domainToPing).then(onRecievePing)
 }
 
 const onRecievePing = function (pingResponse) {
