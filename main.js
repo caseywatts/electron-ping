@@ -69,17 +69,9 @@ const startToPing = function () {
 // tray and menu
 //
 
-const onClickChangeIcon = function () {
-  tray.setImage(iconPaths.icon2)
-}
-const onClickTriggerNotification = function () {
-  notify('hi')
-}
 const setUpTrayAndContextMenu = function () {
   tray = new Tray(iconPaths.icon1)
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'change icon', click: onClickChangeIcon },
-    { label: 'trigger notification', click: onClickTriggerNotification },
     { role: 'quit' }
   ])
   tray.setToolTip('Electron Ping')
