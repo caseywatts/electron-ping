@@ -1,4 +1,5 @@
 const {app, Menu, Tray} = require('electron')
+const path = require('path')
 const notify = require('electron-main-notification')
 const ping = require('ping')
 
@@ -15,7 +16,8 @@ const doThePing = function () {
 }
 const onRecievePing = function (pingResponse) {
   notify(pingResponse.time, {
-    silent: true
+    silent: true,
+    icon: path.join(__dirname, 'arrows2.png')
   })
 }
 const startToPing = function () {
