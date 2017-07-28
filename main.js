@@ -4,6 +4,7 @@ const notify = require('electron-main-notification')
 const ping = require('ping')
 
 let tray = null
+let lastSeenState = null
 const onClickChangeIcon = function () {
   tray.setImage('arrows2.png')
 }
@@ -11,14 +12,24 @@ const onClickTriggerNotification = function () {
   notify('hi')
 }
 
+const silentNotify = function (message) {
+  notify(message, {
+    silent: true
+  })
+}
+
 const doThePing = function () {
   ping.promise.probe('google.com').then(onRecievePing)
 }
 const onRecievePing = function (pingResponse) {
-  notify(pingResponse.time, {
-    silent: true,
-    icon: path.join(__dirname, 'arrows2.png')
-  })
+  if (pingResponse.alive !== lastSeenState) {
+    if (pingResponse.alive === true) {
+      silentNotify('Wifi back on')
+    } else if (pingResponse.alive === false) {
+      silentNotify('Wifi down')
+    }
+    lastSeenState = pingResponse.alive
+  }
 }
 const startToPing = function () {
   setInterval(doThePing, 1000)
