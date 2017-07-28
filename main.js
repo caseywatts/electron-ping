@@ -9,6 +9,10 @@ const onClickTriggerNotification = function () {
   notify('hi')
 }
 
+const startToPing = function () {
+  setInterval(() => { notify('hi') }, 1000)
+}
+
 app.on('ready', () => {
   tray = new Tray('arrows.png')
   const contextMenu = Menu.buildFromTemplate([
@@ -17,6 +21,6 @@ app.on('ready', () => {
     { role: 'quit' }
   ])
   tray.setToolTip('Electron Ping')
-  setInterval(() => { notify('hi') }, 1000)
   tray.setContextMenu(contextMenu)
+  startToPing()
 })
