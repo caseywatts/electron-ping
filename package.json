@@ -4,11 +4,12 @@
   "description": "\"Is my internet down? Oh, yep.\"",
   "main": "main.js",
   "dependencies": {
-    "electron": "^1.6.11",
     "electron-main-notification": "^1.0.1",
     "ping": "^0.2.2"
   },
   "devDependencies": {
+    "electron": "^1.6.11",
+    "electron-builder": "^19.6.3",
     "standard": "^10.0.2"
   },
   "scripts": {
