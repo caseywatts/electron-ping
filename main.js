@@ -14,7 +14,9 @@ const doThePing = function () {
   ping.promise.probe('google.com').then(onRecievePing)
 }
 const onRecievePing = function (pingResponse) {
-  notify(pingResponse.time)
+  notify(pingResponse.time, {
+    silent: true
+  })
 }
 const startToPing = function () {
   setInterval(doThePing, 1000)
