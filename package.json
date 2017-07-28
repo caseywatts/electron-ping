@@ -4,7 +4,8 @@
   "description": "\"Is my internet down? Oh, yep.\"",
   "main": "main.js",
   "dependencies": {
-    "electron": "^1.6.11"
+    "electron": "^1.6.11",
+    "electron-main-notification": "^1.0.1"
   },
   "devDependencies": {
     "standard": "^10.0.2"
