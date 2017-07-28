@@ -1,16 +1,21 @@
 const {app, Menu, Tray} = require('electron')
+const path = require('path')
 const notify = require('electron-main-notification')
 const ping = require('ping')
 
 let tray = null
 let lastSeenState = null
 const onClickChangeIcon = function () {
-  tray.setImage('arrows2.png')
+  tray.setImage(iconPaths.icon2)
 }
 const onClickTriggerNotification = function () {
   notify('hi')
 }
 
+const iconPaths = {
+  icon1: path.join(__dirname, 'arrows.png'),
+  icon2: path.join(__dirname, 'arrows2.png')
+}
 const silentNotify = function (message) {
   notify(message, {
     silent: true
@@ -34,9 +39,9 @@ const maybeNotify = function (lastResponseIsAlive) {
 
 const maybeChangeIcon = function (lastResponseIsAlive) {
   if (lastResponseIsAlive) {
-    tray.setImage('arrows.png')
+    tray.setImage(iconPaths.icon1)
   } else {
-    tray.setImage('arrows2.png')
+    tray.setImage(iconPaths.icon2)
   }
 }
 
@@ -51,7 +56,7 @@ const startToPing = function () {
 }
 
 app.on('ready', () => {
-  tray = new Tray('arrows.png')
+  tray = new Tray(iconPaths.icon1)
   const contextMenu = Menu.buildFromTemplate([
     { label: 'change icon', click: onClickChangeIcon },
     { label: 'trigger notification', click: onClickTriggerNotification },
