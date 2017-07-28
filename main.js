@@ -5,12 +5,6 @@ const ping = require('ping')
 
 let tray = null
 let lastSeenState = null
-const onClickChangeIcon = function () {
-  tray.setImage(iconPaths.icon2)
-}
-const onClickTriggerNotification = function () {
-  notify('hi')
-}
 
 const iconPaths = {
   icon1: path.join(__dirname, 'arrows.png'),
@@ -55,7 +49,14 @@ const startToPing = function () {
   setInterval(doThePing, 1000)
 }
 
-app.on('ready', () => {
+// tray and menu
+const onClickChangeIcon = function () {
+  tray.setImage(iconPaths.icon2)
+}
+const onClickTriggerNotification = function () {
+  notify('hi')
+}
+const setUpTrayAndContextMenu = function () {
   tray = new Tray(iconPaths.icon1)
   const contextMenu = Menu.buildFromTemplate([
     { label: 'change icon', click: onClickChangeIcon },
@@ -64,5 +65,10 @@ app.on('ready', () => {
   ])
   tray.setToolTip('Electron Ping')
   tray.setContextMenu(contextMenu)
+}
+
+// app ready, "main"
+app.on('ready', () => {
+  setUpTrayAndContextMenu()
   startToPing()
 })
