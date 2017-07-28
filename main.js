@@ -15,6 +15,8 @@ const iconPaths = {
   icon2: path.join(__dirname, 'arrows2.png')
 }
 
+const intervalDuration = 1000
+
 //
 // UI Interaction Code
 //
@@ -59,7 +61,7 @@ const onRecievePing = function (pingResponse) {
 }
 
 const startToPing = function () {
-  setInterval(doThePing, 1000)
+  setInterval(doThePing, intervalDuration)
 }
 
 //
