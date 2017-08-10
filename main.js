@@ -2,6 +2,7 @@ const {app, Menu, Tray} = require('electron')
 const path = require('path')
 const notify = require('electron-main-notification')
 const ping = require('ping')
+const is = require('electron-is')
 
 let tray = null
 let lastSeenState = null
@@ -84,6 +85,8 @@ const setUpTrayAndContextMenu = function () {
 
 app.on('ready', () => {
   setUpTrayAndContextMenu()
-  app.dock.hide()
+  if (is.osx()) {
+    app.dock.hide()
+  }
   startToPing()
 })
