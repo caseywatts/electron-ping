@@ -3,19 +3,18 @@ const is = require('electron-is')
 const startToPing = require('./pinging.js')
 const iconPaths = require('./icon-paths.js')
 
-let tray = null
-
 //
 // tray and menu
 //
 
 const setUpTrayAndContextMenu = function () {
-  tray = new Tray(iconPaths.icon1)
+  const tray = new Tray(iconPaths.icon1)
   const contextMenu = Menu.buildFromTemplate([
     { role: 'quit' }
   ])
   tray.setToolTip('Electron Ping')
   tray.setContextMenu(contextMenu)
+  return tray
 }
 
 //
@@ -23,7 +22,7 @@ const setUpTrayAndContextMenu = function () {
 //
 
 app.on('ready', () => {
-  setUpTrayAndContextMenu()
+  const tray = setUpTrayAndContextMenu()
   if (is.osx()) {
     app.dock.hide()
   }
