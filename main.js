@@ -1,12 +1,7 @@
 const {app, Menu, Tray} = require('electron')
 const is = require('electron-is')
 const startToPing = require('./pinging.js')
-const path = require('path')
-
-const iconPaths = {
-  icon1: path.join(__dirname, 'arrows.png'),
-  icon2: path.join(__dirname, 'arrows2.png')
-}
+const iconPaths = require('./icon-paths.js')
 
 let tray = null
 

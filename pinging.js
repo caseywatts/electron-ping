@@ -1,6 +1,6 @@
 const silentNotify = require('./silent-notify.js')
+const iconPaths = require('./icon-paths.js')
 const ping = require('ping')
-const path = require('path')
 
 let tray = null
 let lastSeenState = null
@@ -8,11 +8,6 @@ let lastSeenState = null
 //
 // config
 //
-
-const iconPaths = {
-  icon1: path.join(__dirname, 'arrows.png'),
-  icon2: path.join(__dirname, 'arrows2.png')
-}
 
 const intervalDuration = 1000
 const domainToPing = 'google.com'
